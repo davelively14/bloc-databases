@@ -1,0 +1,51 @@
+NOTE: not sure what other folks did, but when I went through the SQL portion of the WDT course we used CodeSchool's Try SQL - not Codeacademy like this checkpoint says.
+
+1. remove duplicates in a query response
+  Customer.distinct("city")
+    - SELECT DISTINCT city FROM customer;
+  Customer.distinct(["city", "state"])
+    - SELECT DISTINCT city, state FROM customer;
+
+2. filter records using inequalities, pattern matching, ranges, and boolean logic
+  Customer.all.where("title = 'CEO'")
+    - SELECT * FROM customer WHERE title = 'CEO';
+  Customer.all.where(["title = 'CEO'", "area_code = '912'"])
+    - SELECT * FROM customer WHERE title = 'CEO' AND area_code = '912';
+
+3. sort records in a particular order
+  Customer.order("last_name")
+    - SELECT * FROM customer ORDER BY last_name;
+  Customer.order("last_name", "asc")
+    - SELECT * FROM customer ORDER BY last_name ASC;
+
+4. limit the number of records returned
+  Customer.first
+    - SELECT * FROM customer ORDER BY id LIMIT 1;
+  Customer.first(3)
+    - SELECT * FROM customer ORDER BY id LIMIT 3;
+  Customer.last
+    - SELECT * FROM customer ORDER BY id DESC LIMIT 1;
+  Customer.last(3)
+    - SELECT * FROM customer ORDER BY id DESC LIMIT 3;
+
+5. group records into sections
+  Customer.group("company")
+    - SELECT * FROM customer GROUP BY company;
+  Customer.select("name").group("company")
+    - SELECT name FROM customer GROUP BY company;
+
+6. perform calculations using aggregate functions
+  Customer.average("age")
+    - SELECT AVG (age) FROM customer;
+  Customer.max("revenue")
+    - SELECT MAX (revenue) FROM customer;
+  Customer.min("revenue")
+    - SELECT MIN (revenue) FROM customer;
+  Customer.count
+    - SELECT COUNT (id) FROM customer;
+  Customer.sum("revenue")
+    - SELECT SUM (revenue) FROM customer;
+
+7. join tables using cross join, inner join, and outer join
+  Customer.joins("company")
+    - SELECT * FROM customer INNER JOIN company ON company.id = customer.company_id
